@@ -10,7 +10,7 @@ services:
     labels:
       com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy: "true"
     environment:
-        DEFAULT_HOST: pi4.local
+        DEFAULT_HOST: proxy.local
     volumes:
       - certs:/etc/nginx/certs:ro
       - conf.d:/etc/nginx/conf.d
@@ -24,7 +24,7 @@ services:
     build: ./letsencrypt
     restart: unless-stopped
     environment:
-      DEFAULT_EMAIL: josh@joshjacobs.net
+      DEFAULT_EMAIL: # Your email for certificate notification
     volumes:
       - certs:/etc/nginx/certs
       - conf.d:/etc/nginx/conf.d
