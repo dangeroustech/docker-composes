@@ -1,6 +1,6 @@
-# Proxy ARMHF
+# Proxy
 
-Use this for Raspberry Pi 3/4 or any other armhf platform.
+Does proxy things
 
 # Proxying Containers
 
