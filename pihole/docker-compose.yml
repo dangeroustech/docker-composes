@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  pihole:
+    container_name: pihole
+    image: pihole/pihole:latest
+    dns:
+      - 127.0.0.1
+      - 1.1.1.1
+    ports:
+      - 53:53/tcp
+      - 53:53/udp
+      - 67:67/udp
+      - 8053:80/tcp
+    volumes:
+      - './etc-pihole/:/etc/pihole/'
+      - './etc-dnsmasq.d/:/etc/dnsmasq.d/'
+      #- './var-log/pihole.log:/var/log/pihole.log'
+    environment:
+        ServerIP: # Your desired static IP
+        PROXY_LOCATION: pihole
+        VIRTUAL_HOST: pihole.local
+        VIRTUAL_PORT: 80
+        TZ: Europe/London
+        WEBPASSWORD: # Your desired Web UI password
+    #extra_hosts:
+        # LAN hostnames for other docker containers using jwilder
+        #- 'yourDomain.lan:192.168.41.55'
+        #- 'pihole pihole.yourDomain.lan:192.168.41.55'
+        #- 'ghost ghost.yourDomain.lan:192.168.41.55'
+    restart: unless-stopped

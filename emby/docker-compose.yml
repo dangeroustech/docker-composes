@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  emby:
+    container_name: emby
+    image: emby/embyserver:latest
+    restart: unless-stopped
+    network_mode: host
+    environment:
+      - TZ=Europe/London
+      - UID=1000
+      - GID=1000
+    volumes:
+      - /opt/host-config:/config
+      - /media/host-media:/mnt/share1

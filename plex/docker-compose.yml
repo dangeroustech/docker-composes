@@ -1,0 +1,45 @@
+version: '3'
+
+services:
+  flexget:
+    container_name: flexget
+    image: cpoppema/docker-flexget
+    restart: unless-stopped
+    depends_on:
+      - transmission
+    network_mode: host
+    environment:
+      - TZ=Europe/London
+      - FLEXGET_LOG_LEVEL=debug
+      - PUID=1000
+      - PGID=1000
+    volumes:
+      - /opt/host-config:/config
+      - /media/host-downloads:/downloads
+      - /media/host-media:/media
+  
+  transmission:
+    container_name: transmission
+    image: linuxserver/transmission
+    restart: unless-stopped
+    network_mode: host
+    environment:
+      - TZ=Europe/London
+      - PUID=1000
+      - PGID=1000
+    volumes:
+      - /opt/host-config:/config
+      - /media/host-downloads:/downloads
+  
+  plex:
+    container_name: plex
+    image: plexinc/pms-docker:plexpass
+    restart: unless-stopped
+    environment:
+      - TZ=Europe/London
+      - PLEX_CLAIM= #"PLEX-CLAIM-CODE-HERE"
+    network_mode: host
+    volumes:
+      - /opt/host-config:/config
+      - /opt/host-transcode:/transcode
+      - /media/host-media:/data/media
