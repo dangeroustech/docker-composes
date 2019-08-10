@@ -1,2 +1,2 @@
-# docker-composes
-Useful docker compose files.
+# Docker Composes
+Repository of useful docker-compose scripts.
