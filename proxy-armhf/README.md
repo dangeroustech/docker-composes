@@ -4,7 +4,7 @@ Use this for Raspberry Pi 3/4 or any other armhf platform.
 
 # Proxying Containers
 
-Any container that you wish to be proxied just needs the below ednvironment variable adding to it
+Any container that you wish to be proxied just needs the below environment variable adding to it
 ```
 VIRTUAL_HOST=sub.domain.com
 ```
