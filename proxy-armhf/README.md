@@ -20,3 +20,5 @@ VIRTUAL_PORT=9443
 docker-compose build
 docker-compose up -d
 ```
+
+For more in depth usage details, see https://github.com/jwilder/nginx-proxy
