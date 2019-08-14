@@ -19,7 +19,6 @@ VIRTUAL_PORT=9443
 # Usage
 
 ```
-docker-compose build
 docker-compose up -d
 ```
 
