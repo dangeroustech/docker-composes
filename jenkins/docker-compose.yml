@@ -11,7 +11,6 @@ services:
     - LETSENCRYPT_HOST=jenkins.init.tools
     volumes:
       - jenkins_home:/var/jenkins_home
-    restart: unless-stopped
     network_mode: "bridge"
 
 volumes:
