@@ -6,8 +6,9 @@ services:
     image: znc:latest
     restart: unless-stopped
     ports:
-    - "6697:6697"
+      - 6697:6697
     volumes:
       - znc_data:/znc-data
+
 volumes:
   znc_data:
