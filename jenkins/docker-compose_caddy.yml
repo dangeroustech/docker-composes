@@ -5,10 +5,6 @@ services:
     container_name: jenkins
     image: jenkins/jenkins:lts
     restart: unless-stopped
-    environment:
-      - VIRTUAL_HOST=jenkins.init.tools
-      - VIRTUAL_PORT=8080
-      - LETSENCRYPT_HOST=jenkins.init.tools
     labels:
       - caddy.address=jenkins.init.tools
       - caddy.targetport=8080
