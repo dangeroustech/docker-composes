@@ -1,0 +1,12 @@
+version: "3"
+
+services:
+  test_webserver:
+    container_name: test_webserver
+    image: nginx:latest
+    labels:
+    - "traefik.enable=true"
+    - "traefik.http.routers.test_webserver.entrypoints=https"
+    - "traefik.http.routers.test_webserver.rule=Host(`your.domain.here`)"
+    - "traefik.http.routers.test_webserver.tls.certresolver=le"
+    network_mode: "bridge"

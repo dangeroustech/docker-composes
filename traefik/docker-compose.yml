@@ -1,0 +1,34 @@
+version: "3.3"
+
+services:
+  traefik:
+    container_name: traefik
+    image: traefik:latest
+    command:
+      #- --log.level=DEBUG
+      # Entrypoints
+      - --entrypoints.http.address=:80
+      - --entrypoints.https.address=:443
+      # Provider Info
+      - --providers.docker
+      # Certificate Resolver Info
+      - --certificatesresolvers.le.acme.email=your@email.here
+      - --certificatesresolvers.le.acme.storage=/letsencrypt/acme.json
+      - --certificatesresolvers.le.acme.tlschallenge=true
+    labels:
+      # Middleware Redirect
+      - "traefik.http.middlewares.https-redirect.redirectscheme.scheme=https"
+      # Global HTTP -> HTTPS Redirect
+      - "traefik.http.routers.redirs.rule=hostregexp(`{host:.+}`)"
+      - "traefik.http.routers.redirs.entrypoints=http"
+      - "traefik.http.routers.redirs.middlewares=https-redirect"
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+        - "/var/run/docker.sock:/var/run/docker.sock"
+        - "certs:/letsencrypt"
+    restart: unless-stopped
+    network_mode: "bridge"
+volumes:
+  certs:
