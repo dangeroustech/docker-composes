@@ -12,6 +12,6 @@
 
 [certificateResolvers]
   [certificatesResolvers.default.acme]
-    email = "josh@joshjacobs.net"
+    email = "your@email.here"
     storage = "/letsencrypt/acme.json"
     [certificatesResolvers.default.acme.tlsChallenge]
