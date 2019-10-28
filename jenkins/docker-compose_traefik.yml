@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  jenkins:
+    container_name: jenkins
+    image: jenkins/jenkins:lts
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.jenkins.entrypoints=https"
+      - "traefik.http.routers.jenkins.rule=Host(`jenkins.init.tools`)"
+      - "traefik.http.routers.jenkins.tls.certresolver=le"
+      - "traefik.http.services.jenkins.loadbalancer.server.port=8080"
+    volumes:
+      - jenkins_home:/var/jenkins_home
+    network_mode: "bridge"
+
+volumes:
+  jenkins_home:
