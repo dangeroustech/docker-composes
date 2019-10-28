@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  test_webserver:
+    container_name: test_webserver
+    image: nginx:latest
+    labels:
+    - "traefik.enable=true"
+    - "traefik.http.middlewares.tlsredirector.redirectscheme.scheme=https"
+    - "traefik.http.routers.test_webserver.entrypoints=http"
+    - "traefik.http.routers.test_webserver.rule=Host(`your.domain.here`)"
+    - "traefik.http.routers.test_webserver.middlewares=tlsredirector@docker"
+    - "traefik.http.routers.test_webserver_https.entrypoints=https"
+    - "traefik.http.routers.test_webserver_https.rule=Host(`your.domain.here`)"
+    - "traefik.http.routers.test_webserver_https.tls=true"
+    - "traefik.http.routers.test_webserver_https.tls.certresolver=default"
+    network_mode: "bridge"
