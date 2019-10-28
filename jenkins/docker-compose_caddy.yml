@@ -6,7 +6,7 @@ services:
     image: jenkins/jenkins:lts
     restart: unless-stopped
     labels:
-      - caddy.address=jenkins.init.tools
+      - caddy.address=your.domain.here
       - caddy.targetport=8080
       - caddy.proxy.transparent=
     volumes:
